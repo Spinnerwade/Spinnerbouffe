@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les saveurs authentiques du Bénin dans notre restaurant élégant">
+    <title>Saveurs du Bénin | Restaurant Élégant</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="noopener noreferrer">
+    
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="noopener noreferrer">
+    
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --light-primary: #e8d4f0;
+            --white: #ffffff;
+            --dark: #2c3e50;
+            --accent-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--white) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-brand span {
+            color: var(--accent-color);
+        }
+        
+        .nav-link {
+            color: var(--dark) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Boutons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #7d3c98;
+            border-color: #7d3c98;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        /* Section Menu */
+        .menu-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            background-color: var(--white);
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .menu-card .card-body {
+            padding: 25px;
+        }
+        
+        .menu-card .card-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .menu-card .price {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Section À propos */
+        .about-section {
+            background-color: var(--light-primary);
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        /* Galerie */
+        .gallery-item {
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            transition: all 0.5s ease;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Formulaire de réservation */
+        .reservation-form {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-control {
+            height: 50px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        textarea.form-control {
+            height: 120px;
+        }
+        
+        /* Section Contact */
+        .contact-info {
+            background-color: var(--light-primary);
+            padding: 30px;
+            border-radius: 10px;
+            height: 100%;
+        }
+        
+        .contact-info i {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Google Maps */
+        .map-container {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        /* Pied de page */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h5 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+        }
+        
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .reservation-form {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Saveurs <span>du Bénin</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galerie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reservation">Réservation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="slide-up">Saveurs du Bénin</h1>
+                <p class="slide-up" style="transition-delay: 0.2s">Découvrez l'authenticité de la cuisine béninoise dans un cadre élégant</p>
+                <a href="#reservation" class="btn btn-primary btn-lg slide-up" style="transition-delay: 0.4s">Réserver une table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Menu -->
+    <section id="menu" class="py-5">
+        <div class="container">
+            <h2 class="section-title slide-up">Notre Menu</h2>
+            <p class="text-center mb-5 slide-up">Découvrez nos spécialités béninoises préparées avec des ingrédients frais et locaux</p>
+            
+            <div class="row">
+                <!-- Entrées -->
+                <div class="col-md-4">
+                    <h3 class="text-center mb-4 slide-up">Entrées</h3>
+                    
+                    <div class="menu-card slide-up">
+                        <img src="ata.jpg" class="card-img-top" alt="Accra">
+                        <div class="card-body">
+                            <h5 class="card-title">Accra</h5>
+                            <p class="card-text">Beignets de haricots accompagnés de sauce pimentée.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">3,500 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-card slide-up" style="transition-delay: 0.2s">
+                        <img src="sauce_gombo.jpg" class="card-img-top" alt="Sauce Gombo">
+                        <div class="card-body">
+                            <h5 class="card-title">Sauce Gombo</h5>
+                            <p class="card-text">Sauce à base de gombo frais avec du poisson fumé.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">4,500 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Plats Principaux -->
+                <div class="col-md-4">
+                    <h3 class="text-center mb-4 slide-up" style="transition-delay: 0.1s">Plats Principaux</h3>
+                    
+                    <div class="menu-card slide-up" style="transition-delay: 0.1s">
+                        <img src="pâte_rouge.jpg" class="card-img-top" alt="Pâte rouge">
+                        <div class="card-body">
+                            <h5 class="card-title">Pâte Rouge</h5>
+                            <p class="card-text">Pâte de maïs accompagnée de sauce tomate et viande d'agouti.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">6,500 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-card slide-up" style="transition-delay: 0.3s">
+                        <img src="piron.jpg" class="card-img-top" alt="Poulet Yassa">
+                        <div class="card-body">
+                            <h5 class="card-title">Piron</h5>
+                            <p class="card-text">Poulet mariné au citron et oignons, servi avec du riz.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">7,000 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="col-md-4">
+                    <h3 class="text-center mb-4 slide-up" style="transition-delay: 0.2s">Desserts</h3>
+                    
+                    <div class="menu-card slide-up" style="transition-delay: 0.2s">
+                        <img src="talétalé.jpg" class="card-img-top" alt="Beignets banane">
+                        <div class="card-body">
+                            <h5 class="card-title">Beignets de Banane</h5>
+                            <p class="card-text">Beignets sucrés à la banane plantain, parfumés à la vanille.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">3,000 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-card slide-up" style="transition-delay: 0.4s">
+                        <img src="atassi.jpg" class="card-img-top" alt="Fruits frais">
+                        <div class="card-body">
+                            <h5 class="card-title">Assortiment de Fruits Tropicaux</h5>
+                            <p class="card-text">Sélection de fruits frais de saison du Bénin.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">4,000 FCFA</span>
+                                <a href="#reservation" class="btn btn-sm btn-outline-primary">Commander</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <h2 class="section-title slide-up">À Propos de Nous</h2>
+            <p class="text-center mb-5 slide-up">Notre histoire et notre passion pour la cuisine béninoise</p>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 slide-up">
+                    <div class="about-img">
+                        <img src="team.jpg" alt="Notre équipe" loading="">
+                    </div>
+                </div>
+                <div class="col-lg-6 slide-up" style="transition-delay: 0.2s">
+                    <h3>Notre Histoire</h3>
+                    <p>Fondé en 2010, Saveurs du Bénin est né de la passion de son chef fondateur, Komi Gbedjissi, pour les saveurs authentiques de son pays natal. Après des années à parcourir les différentes régions du Bénin pour collecter les recettes traditionnelles, Komi a décidé de partager cette richesse culinaire avec le monde.</p>
+                    <p>Notre restaurant s'engage à utiliser des ingrédients locaux et frais, soutenant ainsi les producteurs béninois. Chaque plat que nous servons raconte une histoire, celle des traditions culinaires transmises de génération en génération.</p>
+                    <p>Nous avons créé un espace élégant où la modernité rencontre l'authenticité, offrant à nos clients une expérience gastronomique unique qui célèbre la diversité culturelle du Bénin.</p>
+                    <div class="mt-4">
+                        <a href="#gallery" class="btn btn-primary">Découvrez notre univers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <h2 class="section-title slide-up">Galerie</h2>
+            <p class="text-center mb-5 slide-up">Un aperçu de nos plats et de notre ambiance</p>
+            
+            <div class="row">
+                <div class="col-md-4 col-sm-6 mb-4 slide-up">
+                    <a href="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" data-lightbox="gallery" data-title="Sauce Gombo">
+                        <img src="riz.jpg" class="img-fluid gallery-item" alt="Sauce Gombo" loading="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 slide-up" style="transition-delay: 0.1s">
+                    <a href="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" data-lightbox="gallery" data-title="Pâte Rouge">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" class="img-fluid gallery-item" alt="Pâte Rouge" loading="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 slide-up" style="transition-delay: 0.2s">
+                    <a href="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80" data-lightbox="gallery" data-title="Beignets de Banane">
+                        <img src="aloco.jpg" class="img-fluid gallery-item" alt="Beignets de Banane" loading="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 slide-up" style="transition-delay: 0.3s">
+                    <a href="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-lightbox="gallery" data-title="Accra">
+                        <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid gallery-item" alt="Accra" loading="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 slide-up" style="transition-delay: 0.4s">
+                    <a href="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-lightbox="gallery" data-title="Poulet Yassa">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid gallery-item" alt="Poulet Yassa" loading="">
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-4 slide-up" style="transition-delay: 0.5s">
+                    <a href="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" data-lightbox="gallery" data-title="Fruits Tropicaux">
+                        <img src="ninnouwi.jpg" class="img-fluid gallery-item" alt="Fruits Tropicaux" loading="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Réservation -->
+    <section id="reservation" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title slide-up">Réservation</h2>
+            <p class="text-center mb-5 slide-up">Réservez votre table pour une expérience culinaire inoubliable</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8 slide-up">
+                    <div class="reservation-form">
+                        <form id="bookingForm" onsubmit="return validateReservationForm()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" id="phone" placeholder="Téléphone" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="guests" min="1" placeholder="Nombre de personnes" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" id="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" id="time" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" rows="3" placeholder="Demandes spéciales (allergies, anniversaire, etc.)"></textarea>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Réserver maintenant</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title slide-up">Contactez-nous</h2>
+            <p class="text-center mb-5 slide-up">Nous sommes à votre disposition pour toute question ou information</p>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 slide-up">
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Adresse</h4>
+                        <p>123 Avenue des Saveurs<br>Cotonou, Bénin</p>
+                        
+                        <i class="fas fa-phone mt-4"></i>
+                        <h4>Téléphone</h4>
+                        <p>+229 12 34 56 78</p>
+                        
+                        <i class="fas fa-envelope mt-4"></i>
+                        <h4>Email</h4>
+                        <p>contact@saveursdubenin.com</p>
+                        
+                        <i class="fas fa-clock mt-4"></i>
+                        <h4>Heures d'ouverture</h4>
+                        <p>Lundi - Vendredi: 11h - 22h<br>Samedi - Dimanche: 10h - 23h</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 slide-up" style="transition-delay: 0.2s">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.258633476926!2d2.420505315769943!3d6.365123895386383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023553f12a3f3a1%3A0x5d3b3a3a3a3a3a3a!2sCotonou%2C%20B%C3%A9nin!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 slide-up">
+                    <h3 class="text-white mb-4">Saveurs du Bénin</h3>
+                    <p>Découvrez l'authenticité de la cuisine béninoise dans un cadre élégant et chaleureux.</p>
+                    <div class="social-icons mt-4">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://tripadvisor.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 slide-up" style="transition-delay: 0.1s">
+                    <h5 class="footer-links">Liens rapides</h5>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#gallery">Galerie</a></li>
+                        <li><a href="#reservation">Réservation</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 slide-up" style="transition-delay: 0.2s">
+                    <h5 class="footer-links">Heures d'ouverture</h5>
+                    <ul>
+                        <li>Lundi - Vendredi: 11h - 22h</li>
+                        <li>Samedi: 10h - 23h</li>
+                        <li>Dimanche: 10h - 23h</li>
+                        <li>Jours fériés: 10h - 23h</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 slide-up" style="transition-delay: 0.3s">
+                    <h5 class="footer-links">Newsletter</h5>
+                    <p>Abonnez-vous pour recevoir nos offres spéciales et actualités.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Votre email" required>
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright text-center slide-up" style="transition-delay: 0.4s">
+                <p class="mb-0">&copy; 2023 Saveurs du Bénin. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="noopener noreferrer"></script>
+    
+    <script>
+        // Sécurité : Désactiver le clic droit et F12
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+            }
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.slide-up, .fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+        
+        // Validation du formulaire de réservation
+        function validateReservationForm() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const guests = document.getElementById('guests').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            
+            // Protection contre XSS (simplifiée)
+            const xssPattern = /<script|<\/script|javascript:|on\w+=/i;
+            if (xssPattern.test(name) || xssPattern.test(phone) || xssPattern.test(email)) {
+                alert('Entrée non valide détectée');
+                return false;
+            }
+            
+            // Validation basique
+            if (!name || !phone || !email || !guests || !date || !time) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return false;
+            }
+            
+            // Simulation d'envoi
+            alert('Merci pour votre réservation ! Nous vous contacterons pour confirmation.');
+            document.getElementById('bookingForm').reset();
+            
+            return false; // Empêche l'envoi réel pour cet exemple
+        }
+        
+        // Smooth scrolling pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Mise à jour de l'état actif dans la navbar
+                    if (targetId !== '#home') {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Mise à jour de la navbar au scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Lazy loading pour les images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Polyfill pour le lazy loading si non supporté
+            const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                lazyLoadObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
